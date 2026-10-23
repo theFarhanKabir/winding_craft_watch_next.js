@@ -647,10 +647,10 @@
     overflow-y:auto;overscroll-behavior:contain;
     background:#070c0d;color:#f5f4f0;
     border-left:1px solid rgba(245,244,240,.2);box-shadow:-18px 0 48px rgba(0,0,0,.42);
-    transform:translateX(102%);visibility:hidden;pointer-events:none;
-    transition:transform .34s cubic-bezier(.2,.7,.2,1),visibility .34s;
+    clip-path:inset(0 0 0 100%);visibility:hidden;pointer-events:none;
+    transition:clip-path .34s cubic-bezier(.2,.7,.2,1),visibility .34s;
   }
-  .header .nav.open{display:flex;transform:translateX(0);visibility:visible;pointer-events:auto}
+  .header .nav.open{display:flex;clip-path:inset(0);visibility:visible;pointer-events:auto}
   .header .nav-backdrop{
     display:block;position:fixed;inset:0;z-index:11;width:100%;height:100vh;height:100dvh;
     padding:0;border:0;background:rgba(20,22,20,.48);cursor:pointer;
