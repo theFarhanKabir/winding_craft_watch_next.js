@@ -750,27 +750,20 @@
 .service-pair-home .service-pair-content i,.nav-close,.header .nav a:after{transition:transform .4s var(--ease-luxury),background-color .3s ease,color .3s ease,border-color .3s ease}
 .closing-bento-service-mark{transition:transform .6s var(--ease-luxury),border-color .35s ease,color .35s ease}
 .header .nav a,.header-actions a,.footer a{transition:color .3s ease,opacity .3s ease}
-.button:active,.header .menu-toggle:active,.nav-close:active{transform:scale(.97)}
+.button:active,.header .menu-toggle:active,.nav-close:active{transform:scale(.985)}
 .product-card:focus-within .product-title,.category-card:focus-visible>b{text-decoration:underline;text-decoration-color:var(--steel);text-underline-offset:4px}
 .hero-banner .text-link:hover,.closing-bento a:hover,.approach-link:hover,.product-bottom a:hover,.product-bottom button:hover{opacity:.72}
 .footer a:hover,.header-actions a:hover{opacity:.7}
 .brand-marquee:hover .brand-marquee-track{animation-play-state:paused}
 @keyframes home-arrive{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 @media(hover:hover) and (pointer:fine){
-  .button:hover{transform:translateY(-2px);box-shadow:0 9px 24px rgba(20,22,20,.12)}
-  .product-card{transition:transform .55s var(--ease-luxury)}
-  .product-card:hover{transform:translateY(-3px)}
-  .product-photo:hover img{transform:scale(1.035)}
-  .category-card:hover .category-photo img{transform:scale(1.055)}
+  .button:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(20,22,20,.1)}
   .category-card:hover>b{color:#5d686b}
-  .approach-primary:hover>img,.approach-detail:hover img,.editorial-story:hover>img,.feedback-photo:hover>img{transform:scale(1.035)}
-  .trust-watch:hover .trust-watch-image img{transform:scale(1.045)}
   .trust-point:hover{border-color:var(--steel)}
   .trust-point:hover .trust-symbol{color:var(--ink);transform:translateY(-2px)}
-  .service-pair-home>a:hover .service-pair-photo img,.closing-bento-feature:hover>img,.closing-bento-detail:hover>img,.closing-bento-service:hover>img{transform:scale(1.04)}
-  .service-pair-home>a:hover .service-pair-content i{transform:rotate(45deg)}
-  .closing-bento-service:hover .closing-bento-service-mark{transform:rotate(-8deg) scale(1.04);border-color:#e2e2dc;color:#e2e2dc}
-  .review-message:hover{transform:translateY(-4px);box-shadow:0 24px 54px rgba(10,12,11,.28)}
+  .service-pair-home>a:hover .service-pair-content i{transform:translateX(2px)}
+  .closing-bento-service:hover .closing-bento-service-mark{transform:scale(1.02);border-color:#e2e2dc;color:#e2e2dc}
+  .review-message:hover{box-shadow:0 14px 34px rgba(10,12,11,.2)}
 }
 @media(max-width:760px){
   .hero-content{animation-duration:.65s}
@@ -830,84 +823,157 @@
   .header .nav-dropdown:is(:hover,:focus-within,.is-open) .nav-caret,.header .nav-dropdown.is-open .nav-dropdown-toggle svg,.product-card:hover .product-photo img,.product-card:focus-within .product-photo img,.product-photo:hover img,.detail-image:hover img,.thumb:hover img{transform:none!important}
 }
 
-/* Make the Ken Burns movement obvious on every product card and product gallery. */
-.product-photo-link{position:absolute;inset:0;z-index:0;display:block;width:100%;height:100%;overflow:hidden}
-.product-photo-link img,.detail-image img,.thumb img{display:block;transform-origin:center;transition:transform 1.2s cubic-bezier(.18,.82,.25,1)}
+/* One restrained image treatment across the landing page and product views. */
+.category-photo,.product-photo,.product-photo-link,.detail-image,.thumb,
+.approach-primary,.approach-detail>div,.editorial-story,.trust-watch-image,
+.feedback-photo,.service-pair-photo,.closing-bento-feature,.closing-bento-detail,.closing-bento-service{overflow:hidden}
+.product-photo-link{position:absolute;inset:0;z-index:0;display:block;width:100%;height:100%}
+.category-photo img,.product-photo-link img,.detail-image img,.thumb img,
+.approach-primary>img,.approach-detail img,.editorial-story>img,.trust-watch-image img,
+.feedback-photo>img,.service-pair-photo img,.closing-bento-feature>img,
+.closing-bento-detail>img,.closing-bento-service>img{
+  display:block;transform:scale(1);transform-origin:center;
+  transition:transform 1s cubic-bezier(.2,.72,.24,1)
+}
 .product-photo-link img{width:100%;height:100%;object-fit:cover}
-.detail-image img,.thumb img{transform-origin:center;transition:transform 1.2s cubic-bezier(.18,.82,.25,1)}
-@media(hover:hover),(pointer:fine){
-  .product-card:hover .product-photo-link img,.product-photo:hover .product-photo-link img,.product-card:focus-within .product-photo-link img{transform:scale(1.16) rotate(.8deg)}
-  .detail-image:hover img,.thumb:hover img{transform:scale(1.12) rotate(.45deg)}
+.category-photo>span,.product-photo>.new-badge,.product-photo>.product-card-wishlist,
+.product-photo>.product-card-actions,.product-photo>.status{z-index:2}
+.new-arrivals .product-photo>.status{display:none}
+.category-card>b,.approach-primary>span,.story-label,.editorial-story h3,
+.editorial-story b,.editorial-story>div>span,.trust-point:before,.trust-watch-image,
+.review-message,.service-pair-home .service-pair-content h2,
+.service-pair-home .service-pair-content>span:last-child,.service-pair-home .service-pair-index,
+.closing-bento-feature-copy h2,.closing-bento-detail-copy h3,.closing-bento-service-copy h3{
+  transition:transform .55s cubic-bezier(.2,.72,.24,1),color .35s ease,
+    background-color .35s ease,border-color .35s ease,box-shadow .45s ease,opacity .35s ease
 }
-@media(hover:none) and (pointer:coarse){
-  .product-card:active .product-photo-link img,.detail-image:active img,.thumb:active img{transform:scale(1.045)}
-}
-@media(prefers-reduced-motion:reduce){
-  .product-card:hover .product-photo-link img,.product-photo:hover .product-photo-link img,.product-card:focus-within .product-photo-link img,.detail-image:hover img,.thumb:hover img{transform:none!important}
-}
-
-/* Individual finishing gestures for the home sections after Our Approach. */
-.approach-primary>img,.approach-detail img{transition:transform 1.8s var(--ease-luxury),filter .8s ease}
-.approach-detail>div:after{content:"";position:absolute;inset:-20% -65%;pointer-events:none;background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.28) 50%,transparent 58%);transform:translateX(-110%);opacity:0;transition:transform 1.25s var(--ease-luxury),opacity .35s ease}
-.approach-primary>span,.story-label{transition:background-color .4s ease,color .4s ease,border-color .4s ease}
-.editorial-story h3,.editorial-story b,.editorial-story>div>span{transition:transform .55s var(--ease-luxury),letter-spacing .45s ease,color .35s ease}
-.trust-point:before{content:"";position:absolute;top:-1px;left:0;width:48px;height:1px;background:var(--steel);transform:scaleX(0);transform-origin:left;transition:transform .55s var(--ease-luxury)}
-.trust-watch-image{transition:box-shadow .6s ease,border-color .6s ease}
-.feedback-photo>img{transition:transform 1.8s var(--ease-luxury),filter .8s ease}
-.review-message{transform-origin:right bottom}
-.service-pair-home .service-pair-content h2,.service-pair-home .service-pair-content>span:last-child,.service-pair-home .service-pair-index{transition:transform .6s var(--ease-luxury),color .4s ease,letter-spacing .4s ease}
-.closing-bento-feature-copy h2,.closing-bento-detail-copy h3,.closing-bento-service-copy h3{transition:transform .6s var(--ease-luxury),letter-spacing .45s ease}
+.trust-point:before{content:"";position:absolute;top:-1px;left:0;width:42px;height:1px;background:var(--steel);transform:scaleX(0);transform-origin:left}
 .footer-top>div:not(:first-child)>a{position:relative;padding-bottom:2px}
-.footer-top>div:not(:first-child)>a:after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease-luxury)}
+.footer-top>div:not(:first-child)>a:after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.2,.72,.24,1)}
 @media(hover:hover) and (pointer:fine){
-  .approach-primary:hover>img{transform:scale(1.055) translateX(.6%);filter:saturate(1.08)}
+  .category-card:hover .category-photo img,.product-card:hover .product-photo-link img,
+  .product-photo:hover .product-photo-link img,.product-card:focus-within .product-photo-link img,
+  .detail-image:hover img,.thumb:hover img,.approach-primary:hover>img,.approach-detail:hover img,
+  .editorial-story:hover>img,.trust-watch:hover .trust-watch-image img,.feedback-photo:hover>img,
+  .service-pair-home>a:hover .service-pair-photo img,.closing-bento-feature:hover>img,
+  .closing-bento-detail:hover>img,.closing-bento-service:hover>img{transform:scale(1.035)}
+  .category-card:hover>b,.editorial-story:hover h3,.closing-bento-feature:hover .closing-bento-feature-copy h2,
+  .closing-bento-detail:hover .closing-bento-detail-copy h3,.closing-bento-service:hover .closing-bento-service-copy h3{transform:translateY(-2px)}
   .approach-primary:hover>span{background:var(--ink);color:var(--paper)}
-  .approach-detail:hover img{transform:scale(1.085) rotate(.7deg)}
-  .approach-detail:hover>div:after{transform:translateX(110%);opacity:1}
-  .editorial-story:hover>img{transform:scale(1.055)}
-  .editorial-story:hover h3{transform:translateY(-5px);letter-spacing:.005em}
-  .editorial-story:hover b{transform:translateX(4px);color:#fff}
+  .editorial-story:hover b{transform:translateX(3px);color:#fff}
   .editorial-story:hover .story-label{border-color:#fff;background:rgba(245,244,240,.12)}
   .trust-point:hover:before{transform:scaleX(1)}
-  .trust-watch:hover .trust-watch-image{border-color:rgba(30,30,26,.34);box-shadow:0 22px 48px rgba(20,22,20,.18)}
-  .feedback-photo:hover>img{transform:scale(1.05) translateX(-.4%);filter:saturate(1.08)}
-  .review-message:hover{transform:translateY(-6px) rotate(-.35deg);box-shadow:0 24px 54px rgba(10,12,11,.28)}
-  .service-pair-home>a:first-child:hover .service-pair-content h2{transform:translateX(5px)}
-  .service-pair-home>a:last-child:hover .service-pair-content h2{transform:translateX(-4px)}
-  .service-pair-home>a:hover .service-pair-index{letter-spacing:.18em}
-  .service-pair-home>a:first-child:hover .service-pair-photo img{transform:scale(1.065) translateX(.6%)}
-  .service-pair-home>a:last-child:hover .service-pair-photo img{transform:scale(1.065) translateX(-.6%)}
-  .closing-bento-feature:hover>img{transform:scale(1.06) translateX(.5%)}
-  .closing-bento-detail:hover>img{transform:scale(1.085)}
-  .closing-bento-feature:hover .closing-bento-feature-copy h2{transform:translateX(4px);letter-spacing:-.012em}
-  .closing-bento-detail:hover .closing-bento-detail-copy h3{transform:translateY(-4px)}
-  .closing-bento-service:hover .closing-bento-service-copy h3{transform:translateX(4px)}
+  .trust-watch:hover .trust-watch-image{border-color:rgba(30,30,26,.28);box-shadow:0 14px 32px rgba(20,22,20,.13)}
+  .review-message:hover{box-shadow:0 14px 34px rgba(10,12,11,.2)}
+  .service-pair-home>a:hover .service-pair-index{opacity:.8}
   .footer-top>div:not(:first-child)>a:hover:after{transform:scaleX(1)}
 }
 @media(hover:none){
-  .editorial-story:active img,.approach-primary:active>img,.approach-detail:active img{transform:scale(1.025)}
+  .category-card:hover .category-photo img,.product-photo:hover .product-photo-link img{transform:scale(1)}
+  .category-card:active .category-photo img,.product-card:active .product-photo-link img,
+  .detail-image:active img,.thumb:active img,.approach-primary:active>img,
+  .approach-detail:active img,.editorial-story:active>img,.trust-watch:active .trust-watch-image img,
+  .feedback-photo:active>img,.service-pair-home>a:active .service-pair-photo img,
+  .closing-bento-feature:active>img,.closing-bento-detail:active>img,
+  .closing-bento-service:active>img{transform:scale(1.02)}
   .trust-point:active{border-color:var(--steel)}
-  .trust-watch:active .trust-watch-image{box-shadow:0 12px 28px rgba(20,22,20,.14)}
-  .feedback-photo:active>img,.service-pair-home>a:active .service-pair-photo img,.closing-bento-feature:active>img,.closing-bento-detail:active>img,.closing-bento-service:active>img{transform:scale(1.025)}
-  .review-message:active{transform:translateY(-2px)}
+  .trust-watch:active .trust-watch-image{box-shadow:0 10px 24px rgba(20,22,20,.12)}
   .footer-top>div:not(:first-child)>a:active{opacity:.72}
 }
 @media(prefers-reduced-motion:reduce){
-  .approach-detail>div:after,.trust-point:before,.footer-top>div:not(:first-child)>a:after{display:none}
-  .approach-primary:hover>img,.approach-detail:hover img,.editorial-story:hover>img,.editorial-story:hover h3,.editorial-story:hover b,.feedback-photo:hover>img,.review-message:hover,.service-pair-home>a:hover .service-pair-content h2,.service-pair-home>a:hover .service-pair-photo img,.closing-bento-feature:hover>img,.closing-bento-detail:hover>img,.closing-bento-feature:hover .closing-bento-feature-copy h2,.closing-bento-detail:hover .closing-bento-detail-copy h3,.closing-bento-service:hover .closing-bento-service-copy h3{transform:none!important}
+  .category-photo img,.product-photo img,.detail-image img,.thumb img,.approach-primary>img,
+  .approach-detail img,.editorial-story>img,.trust-watch-image img,.feedback-photo>img,
+  .service-pair-photo img,.closing-bento-feature>img,.closing-bento-detail>img,
+  .closing-bento-service>img,.category-card>b,.editorial-story h3,.editorial-story b,
+  .closing-bento-feature-copy h2,.closing-bento-detail-copy h3,.closing-bento-service-copy h3,
+  .review-message,.footer-top>div:not(:first-child)>a:after{transition:none!important}
+  .category-card:hover .category-photo img,.product-card:hover .product-photo-link img,
+  .product-photo:hover .product-photo-link img,.product-card:focus-within .product-photo-link img,
+  .detail-image:hover img,.thumb:hover img,.approach-primary:hover>img,.approach-detail:hover img,
+  .editorial-story:hover>img,.trust-watch:hover .trust-watch-image img,.feedback-photo:hover>img,
+  .service-pair-home>a:hover .service-pair-photo img,.closing-bento-feature:hover>img,
+  .closing-bento-detail:hover>img,.closing-bento-service:hover>img{transform:none!important}
 }
 
-/* Homepage sections enter gently as they reach the viewport. */
-main [data-scroll-reveal]{opacity:1;transition:opacity .78s var(--ease-luxury),transform .78s var(--ease-luxury);transition-delay:var(--scroll-delay,0ms)}
+/* Homepage sections enter with a small, even fade and rise. */
+main [data-scroll-reveal]{opacity:1;transition:opacity .62s cubic-bezier(.2,.72,.24,1),transform .62s cubic-bezier(.2,.72,.24,1);transition-delay:var(--scroll-delay,0ms)}
 main [data-scroll-reveal]:not(.is-visible){opacity:0}
-main [data-scroll-reveal="left"]:not(.is-visible){transform:translate3d(-26px,0,0)}
-main [data-scroll-reveal="right"]:not(.is-visible){transform:translate3d(26px,0,0)}
-main [data-scroll-reveal="rise"]:not(.is-visible){transform:translate3d(0,22px,0)}
-main [data-scroll-reveal="scale"]:not(.is-visible){transform:scale(.965)}
+main [data-scroll-reveal="left"]:not(.is-visible){transform:translate3d(-14px,0,0)}
+main [data-scroll-reveal="right"]:not(.is-visible){transform:translate3d(14px,0,0)}
+main [data-scroll-reveal="rise"]:not(.is-visible){transform:translate3d(0,14px,0)}
+main [data-scroll-reveal="scale"]:not(.is-visible){transform:scale(.985)}
 main [data-scroll-reveal].is-visible{opacity:1;transform:translate3d(0,0,0) scale(1)}
-@media(max-width:760px){
-  main [data-scroll-reveal="left"]:not(.is-visible){transform:translate3d(-14px,0,0)}
-  main [data-scroll-reveal="right"]:not(.is-visible){transform:translate3d(14px,0,0)}
-  main [data-scroll-reveal="rise"]:not(.is-visible){transform:translate3d(0,14px,0)}
-}
 @media(prefers-reduced-motion:reduce){main [data-scroll-reveal]{opacity:1!important;transform:none!important;transition:none!important}}
+
+/* New-watch cards keep their shopping actions visible over each photo. */
+.product-photo>.product-card-wishlist{
+  position:absolute;z-index:4;top:12px;right:12px;display:grid;place-items:center;
+  width:40px;height:40px;padding:0;border:1px solid rgba(255,255,255,.72);
+  border-radius:50%;background:rgba(246,245,241,.96);color:var(--ink);
+  box-shadow:0 3px 14px rgba(0,0,0,.16);opacity:0;visibility:hidden;transform:translateY(7px);
+  pointer-events:none;transition:opacity .22s ease,transform .22s ease,visibility .22s ease
+}
+.product-card-wishlist svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.product-card-wishlist svg.is-filled{fill:currentColor}
+.product-photo:hover>.product-card-wishlist,.product-photo:focus-within>.product-card-wishlist{opacity:1;visibility:visible;transform:none;pointer-events:auto}
+.product-photo>.status:not(.available){left:12px;right:auto;top:52px}
+.product-photo>.status.available{display:none}
+.product-photo>.product-card-actions{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;
+  opacity:0;visibility:hidden;transform:translateY(7px);pointer-events:none;
+  transition:opacity .22s ease,transform .22s ease,visibility .22s ease
+}
+.product-photo:hover>.product-card-actions,.product-photo:focus-within>.product-card-actions{opacity:1;visibility:visible;transform:none;pointer-events:auto}
+.product-photo .product-add-button,.product-photo .product-buy-button{
+  min-width:0;height:46px;min-height:46px;padding:0 10px;border-radius:999px;
+  font:600 10px var(--label);letter-spacing:.02em;text-transform:none;white-space:nowrap
+}
+.product-add-plus{display:none}
+.product-photo .product-add-button{border:1px solid rgba(255,255,255,.75);background:rgba(246,245,241,.96);color:var(--ink)}
+.product-photo .product-buy-button{border:1px solid var(--ink);background:var(--ink);color:var(--paper)}
+.product-photo .product-add-button:hover:not(:disabled){background:#fff}
+.product-photo .product-buy-button:hover:not(:disabled){background:#34352f;color:#fff}
+.new-watch-card .product-photo>.status:not(.available){top:50px}
+@media(max-width:760px){
+  .product-photo>.product-card-wishlist{top:8px;right:8px;width:36px;height:36px;opacity:1;visibility:visible;transform:none;pointer-events:auto}
+  .product-photo>.product-card-actions{display:flex;align-items:center;justify-content:center;left:8px;right:8px;bottom:8px;gap:7px;opacity:1;visibility:visible;transform:none;pointer-events:auto}
+  .product-photo .product-add-button{display:grid;place-items:center;flex:0 0 38px;width:38px;height:38px;min-height:38px;padding:0;border-radius:50%;font:400 25px/1 var(--label)}
+  .product-add-label{display:none}
+  .product-add-plus{display:block;transform:translateY(-1px)}
+  .product-photo .product-buy-button{flex:1 1 100px;height:38px;min-height:38px;padding-inline:12px;font-size:9px}
+  .new-watch-card .product-photo>.status:not(.available){left:8px;top:42px}
+}
+@media(hover:none) and (pointer:coarse){
+  .product-photo>.product-card-wishlist,.product-photo>.product-card-actions{opacity:1;visibility:visible;transform:none;pointer-events:auto}
+}
+@media(max-width:420px){
+  .product-photo>.product-card-actions{gap:6px}
+  .product-photo .product-add-button{flex-basis:34px;width:34px;height:34px;min-height:34px;font-size:23px}
+  .product-photo .product-buy-button{height:34px;min-height:34px;padding-inline:8px;font-size:8px}
+}
+
+/* Keep the header actions icon-only at every viewport size. */
+.header-actions .header-icon{
+  position:relative;display:inline-grid;place-items:center;width:24px;height:28px;
+  padding:0;border:0;background:transparent;color:inherit;line-height:1
+}
+.header-actions .header-icon svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}
+.header-actions .search-link{display:inline-grid;gap:0}
+.header-actions .search-link span{display:none}
+.header-actions .cart-link{font-size:0;gap:0}
+.header-actions .cart-link .header-icon-count{position:absolute;top:-1px;right:-5px;display:grid;width:15px;height:15px;margin:0;border:1px solid currentColor;border-radius:50%;font:8px/1 var(--label);letter-spacing:0}
+.header-actions .wishlist-link{display:inline-grid}
+@media(max-width:760px){.home-nav .search-link{display:inline-grid}.home-nav .cart-link{font-size:0}}
+
+/* Let the phone hero use the actual emulated viewport instead of a fixed minimum. */
+@media(max-width:760px){
+  .header.home-nav{width:calc(100% - 24px);left:50%;transform:translateX(-50%)}
+  main{width:100%;min-width:0}
+  .hero.hero-banner{
+    width:calc(100% - 24px);
+    height:min(800px,calc(100svh - 18px));
+    min-height:0;
+    margin:12px auto 0;
+  }
+  .top-categories.wrap{width:100%;max-width:100%}
+}

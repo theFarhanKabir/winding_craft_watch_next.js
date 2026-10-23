@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Crimson_Pro, DM_Sans, Oswald } from "next/font/google";
 import "./globals.css";
 import { SiteProvider } from "@/components/Site";
@@ -10,6 +10,11 @@ const dmSans = DM_Sans({ weight: "400", subsets: ["latin"], variable: "--font-dm
 export const metadata: Metadata = {
   title: { default: "Winding Craft — Pre-owned watches, clearly presented", template: "%s | Winding Craft" },
   description: "100% verified & authentic pre-owned watch shop based in Bangladesh.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

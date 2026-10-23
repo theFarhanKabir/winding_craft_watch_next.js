@@ -1,0 +1,24 @@
+﻿import fs from 'node:fs';
+const targets = await (await fetch('http://127.0.0.1:9223/json/list')).json();
+const page = targets.find(t => t.type === 'page');
+if (!page) throw new Error('No browser page target');
+const ws = new WebSocket(page.webSocketDebuggerUrl);
+await new Promise((resolve,reject)=>{ws.addEventListener('open',resolve,{once:true});ws.addEventListener('error',reject,{once:true});});
+let nextId=0; const pending=new Map();
+ws.addEventListener('message',event=>{const msg=JSON.parse(event.data);if(msg.id&&pending.has(msg.id)){const p=pending.get(msg.id);pending.delete(msg.id);msg.error?p.reject(msg.error):p.resolve(msg.result);}});
+const cdp=(method,params={})=>new Promise((resolve,reject)=>{const id=++nextId;pending.set(id,{resolve,reject});ws.send(JSON.stringify({id,method,params}));});
+const delay=ms=>new Promise(r=>setTimeout(r,ms));
+await cdp('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true,screenWidth:390,screenHeight:844});
+await cdp('Page.enable');
+await cdp('Page.navigate',{url:'http://localhost:3000/'});
+await delay(6000);
+const normal=await cdp('Runtime.evaluate',{expression:`JSON.stringify({iw:innerWidth,sw:screen.width,dpr:devicePixelRatio,mobile:matchMedia('(max-width:760px)').matches,zoom:document.documentElement.style.zoom,htmlWidth:document.documentElement.scrollWidth,bodyWidth:document.body.scrollWidth,hero:(()=>{const r=document.querySelector('.hero-banner').getBoundingClientRect();return [r.x,r.width,r.right,r.height]})(),head:(()=>{const r=document.querySelector('.hero-banner h1').getBoundingClientRect();return [r.x,r.width,r.right,r.height,getComputedStyle(document.querySelector('.hero-banner h1')).fontSize]})()})`,returnByValue:true});
+console.log('phone390',normal.result.value);
+await cdp('Emulation.setDeviceMetricsOverride',{width:780,height:1688,deviceScaleFactor:1,mobile:true,screenWidth:390,screenHeight:844});
+await cdp('Runtime.evaluate',{expression:'dispatchEvent(new Event("resize"))'});
+await delay(1000);
+const reduced=await cdp('Runtime.evaluate',{expression:`JSON.stringify({iw:innerWidth,sw:screen.width,dpr:devicePixelRatio,mobile:matchMedia('(max-width:760px)').matches,zoom:document.documentElement.style.zoom,htmlWidth:document.documentElement.scrollWidth,bodyWidth:document.body.scrollWidth,hero:(()=>{const r=document.querySelector('.hero-banner').getBoundingClientRect();return [r.x,r.width,r.right,r.height]})(),head:(()=>{const r=document.querySelector('.hero-banner h1').getBoundingClientRect();return [r.x,r.width,r.right,r.height,getComputedStyle(document.querySelector('.hero-banner h1')).fontSize]})()})`,returnByValue:true});
+console.log('phoneZoomedOutSimulation',reduced.result.value);
+const shot=await cdp('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});fs.writeFileSync('C:/Users/User/Winding Craft Website/frontend/phone-cdp-check.png',Buffer.from(shot.data,'base64'));
+ws.close();
+
